@@ -15,40 +15,128 @@
 
 <body>
     <div class="title-bar">
-        <img src='./images/logo.png'>
-        <div class='moto'>
+        <div class='left-menu'>
+            <div class='cbutton'>
+                Home
+            </div>
+            <div class='cbutton'>
+                Aircraft Kits
+            </div>
+            <div class='cbutton'>
+                Factory Built
+            </div>
+        </div>
+        <img class='small-logo' src='./images/cropped_logo.png'>
+        <div class='left-menu'>
+            <div class='cbutton'>
+                Community
+            </div>
+            <div class='cbutton'>
+                Flight Training
+            </div>
+
+            <div class='cbutton'>
+                Airshows
+            </div>
+
+        </div>
+        <!-- <div class='moto'>
                 "The Sky is not the limit... It's a Playground!"
 
-        </div>
+        </div> -->
     </div>
     <div class='menu-bar'>
-        <div class='cbutton'>
-            Home
-        </div>
-        <div class='cbutton'>
-            Aircraft Kits
-        </div>
-        <div class='cbutton'>
-            Factory Built
-        </div>
-        <div class='cbutton'>
-            Community
-        </div>
-        <div class='cbutton'>
-            Flight Training
-        </div>
-
-        <div class='cbutton'>
-            Airshows
-        </div>
-        <div class='cbutton'>
-            Galleries
-        </div>
-
     </div>
-    <div class='content'>
+    <div id='content' class='content'>
+        <div onclick=leftArrow() class='arrow left-arrow'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" /></svg>
+        </div>
+        <div onclick=rightArrow() class='arrow right-arrow'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" /></svg>
+        </div>
+    </div>
+    <hr>
+    <div class='bottom-info'>
+        <p style="text-align: center;"><span style="font-size: 7pt;"><br> © 2016-2018 Kitfox
+                Aircraft, LLC. All rights reserved.&nbsp;&nbsp;&nbsp; Kitfox is a registered
+                trademark.</span></p>
 
     </div>
 </body>
+
+
+<script>
+    var imgCounter = 1;
+
+    var nextImageTimer = setInterval(nextImageTimerCallback, 5000);
+
+    function nextImageTimerCallback() {
+        clearInterval(nextImageTimer)
+        imgCounter += 1;
+        setImage()
+    }
+
+    function fadeOutAndCallback(image, callback) {
+        var opacity = 1;
+        var timer = setInterval(function () {
+            if (opacity < 0.1) {
+                clearInterval(timer);
+                callback(); //this executes the callback function!
+            }
+            image.style.opacity = opacity;
+            opacity -= 0.1;
+        }, 50);
+    }
+
+    function fadeIn(element) {
+        var op = 0.1;  // initial opacity
+        var timer = setInterval(function () {
+            if (op >= 1) {
+                clearInterval(timer);
+            }
+            element.style.opacity = op;
+            op += 0.1;
+        }, 10);
+    }
+
+
+    function rightArrow() {
+        imgCounter += 1;
+        setImage();
+
+    }
+
+    function leftArrow() {
+        imgCounter -= 1;
+        setImage();
+    }
+
+    function setImage() {
+        if (imgCounter == 0) {
+            imgCounter = 17;
+        } else if (imgCounter == 18) {
+            imgCounter = 1;
+        }
+        var image = document.getElementById('content');
+        fadeOutAndCallback(image,
+            function () {
+                image.style.backgroundImage = "url(./images/" + imgCounter + ".jpg)";
+                fadeIn(image);
+                clearInterval(nextImageTimer);
+
+                nextImageTimer = setInterval(nextImageTimerCallback, 5000);
+
+            }
+        );
+
+
+    }
+
+
+</script>
 
 </html>
