@@ -67,22 +67,24 @@ body, html {
 
 .content {
     background-color: black;
-    height: 100%;
-    background-image: url(./images/1.jpg);
+    /* height: 100%; */
+    width:100%;
+    background-image: url(./images/home/1.jpg);
     background-repeat: no-repeat;
     background-size: 100%  ;
-
-    /* -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover; */
     background-position-x: center
+}
+
+.content-wrapper {
+    height: 100%;
 }
 
 .arrow {
     vertical-align: -webkit-baseline-middle;
     height: 100%;
     cursor: pointer;
+    position: relative;
+    top: -100px
 }
 
 .left-arrow {
