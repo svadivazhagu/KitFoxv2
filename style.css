@@ -77,11 +77,17 @@ body, html {
 
 .content-wrapper {
     height: 100%;
+    background-color:black;
+}
+
+.text-content-wrapper {
+    background-color:white;
+    color: black;
+    margin: 10px;
 }
 
 .arrow {
     vertical-align: -webkit-baseline-middle;
-    height: 100%;
     cursor: pointer;
     position: relative;
     top: -100px
